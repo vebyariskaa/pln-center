@@ -600,5 +600,12 @@
     "event": "error",
     "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
     "details": "Kesalahan memutar: 1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3 (File tidak ditemukan atau format tidak didukung)"
+  },
+  {
+    "id": "1783565403183",
+    "timestamp": "2026-07-09T02:50:03.183Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
   }
 ]

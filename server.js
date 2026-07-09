@@ -139,22 +139,10 @@ app.put('/api/videos/rename', (req, res) => {
   const oldPath = path.join(VIDEOS_DIR, oldName);
   const newPath = path.join(VIDEOS_DIR, cleanNewName);
 
-  if (!fs.existsSync(oldPath)) {
-    return res.status(404).json({ error: 'Berkas lama tidak ditemukan.' });
-  }
-  if (fs.existsSync(newPath)) {
-    return res.status(400).json({ error: 'Berkas dengan nama tersebut sudah ada.' });
-  }
+  const schedules = readJsonFile(SCHEDULES_FILE);
+  let updated = false;
 
-  fs.rename(oldPath, newPath, (err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Gagal mengubah nama berkas di disk.' });
-    }
-
-    // Update schedules yang merujuk berkas ini
-    const schedules = readJsonFile(SCHEDULES_FILE);
-    let updated = false;
-
+  const updateSchedulesDb = () => {
     schedules.forEach(sch => {
       if (sch.videoName === oldName) {
         sch.videoName = cleanNewName;
@@ -174,7 +162,35 @@ app.put('/api/videos/rename', (req, res) => {
     if (updated) {
       writeJsonFile(SCHEDULES_FILE, schedules);
     }
+  };
 
+  // KASUS 1: File lama sudah tidak ada di disk, tapi file baru SUDAH ADA (berarti pengguna mengubahnya manual di Windows)
+  if (!fs.existsSync(oldPath) && fs.existsSync(newPath)) {
+    updateSchedulesDb();
+    return res.json({ 
+      message: 'Sinkronisasi berhasil! Nama jadwal disesuaikan dengan berkas fisik.', 
+      newName: cleanNewName,
+      manualSync: true 
+    });
+  }
+
+  // KASUS 2: File lama tidak ada dan file baru juga tidak ada
+  if (!fs.existsSync(oldPath)) {
+    return res.status(404).json({ error: 'Berkas fisik lama tidak ditemukan di server.' });
+  }
+
+  // KASUS 3: File lama ada, tapi nama baru bentrok dengan file lain
+  if (fs.existsSync(newPath) && oldName !== cleanNewName) {
+    return res.status(400).json({ error: 'Berkas dengan nama baru tersebut sudah ada.' });
+  }
+
+  // Lakukan rename fisik file
+  fs.rename(oldPath, newPath, (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Gagal mengubah nama berkas di disk.' });
+    }
+
+    updateSchedulesDb();
     res.json({ message: 'Berkas berhasil diubah namanya.', newName: cleanNewName });
   });
 });
