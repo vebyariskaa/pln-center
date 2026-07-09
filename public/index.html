@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLN Media Center - Sistem Pemutar Video Terjadwal</title>
+  <!-- Google Fonts: Outfit + Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Background Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+  <!-- Grid Pattern Overlay -->
+  <div class="bg-grid-overlay"></div>
+
+  <!-- Browser Autoplay Permission Overlay -->
+  <div id="activation-overlay" class="activation-overlay">
+    <div class="activation-rings">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+    </div>
+    <div class="activation-card">
+      <div class="activation-logo-wrap">
+        <div class="activation-logo-glow"></div>
+        <img src="img/logo-pln.jpg" alt="PLN Logo" class="pln-real-logo-large">
+      </div>
+      <div class="activation-title-row">
+        <h2>PLN <span>Media Center</span></h2>
+        <div class="activation-version-badge">v2.0</div>
+      </div>
+      <p>Browser memerlukan izin untuk mengaktifkan pemutaran otomatis dengan suara (audio autoplay). Tekan tombol di bawah untuk mulai.</p>
+      <button id="btn-activate" class="btn btn-primary btn-large btn-activate-glow">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        <span>Aktifkan &amp; Mulai Sistem</span>
+      </button>
+      <div class="activation-footer-note">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        Sistem berjalan lokal — data aman &amp; privat
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <!-- Header Top Accent Bar -->
+      <div class="header-accent-bar"></div>
+
+      <div class="logo-area">
+        <div class="logo-danantara-header">
+          <img src="/img/logo-danantara.jpg" alt="Danantara" class="header-logo-img">
+        </div>
+        <div class="header-vertical-divider"></div>
+        <div class="logo-text">
+          <h1>PLN <span>Media Center</span></h1>
+          <span class="sub-text">Sistem Pemutar Video Terjadwal</span>
+        </div>
+      </div>
+
+      <!-- Header Center: Stats Widgets -->
+      <div class="header-stats">
+        <div class="stat-widget">
+          <span class="stat-label">Jadwal Hari Ini</span>
+          <div class="stat-value-fraction">
+            <span id="header-stat-realized" class="stat-fraction-realized">0</span>
+            <span class="stat-fraction-divider">/</span>
+            <span id="header-stat-schedules" class="stat-fraction-total">—</span>
+          </div>
+          <div class="stat-mini-bar">
+            <div id="header-stat-bar" class="stat-mini-bar-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="stat-separator"></div>
+        <div class="stat-widget">
+          <span class="stat-label">Media</span>
+          <span class="stat-value" id="header-stat-videos">—</span>
+        </div>
+      </div>
+
+      <!-- Live Clock, Status & PLN Logo -->
+      <div class="header-status">
+        <div class="clock-display">
+          <span id="live-date" class="live-date">Rabu, 08 Juli 2026</span>
+          <span id="live-time" class="live-time">10:30:00</span>
+        </div>
+        <div id="status-indicator-box" class="status-indicator off">
+          <span id="status-dot" class="pulse-dot red"></span>
+          <span id="status-text" class="status-text off">Sistem Off</span>
+        </div>
+        <button id="btn-stop-system" class="btn btn-danger-pill btn-small"
+          style="display: none;">
+          <svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink: 0;">
+            <path fill="currentColor" d="M6 19h12V5H6v14z" />
+          </svg>
+          <span>Hentikan</span>
+        </button>
+        <div class="logo-pln-header-right">
+          <img src="/img/logo-pln.jpg" alt="PLN" class="header-logo-img">
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-content">
+
+      <!-- Left Column: Video Player and Log History -->
+      <section class="left-column">
+        <!-- Player Card -->
+        <div class="card player-card">
+          <div class="card-header">
+            <div class="title-with-badge">
+              <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              </div>
+              <h3>Monitor Layar Utama</h3>
+              <span id="player-badge" class="badge badge-standby">Standby</span>
+            </div>
+            <div class="player-controls-quick">
+              <!-- Play/Pause Toggle -->
+              <button id="btn-play-pause-toggle" class="btn-icon" title="Putar/Jeda" style="display: none;">
+                <svg viewBox="0 0 24 24" width="20" height="20" id="icon-play-pause">
+                  <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              </button>
+              <!-- Stop Media -->
+              <button id="btn-stop-media" class="btn-icon" title="Hentikan Media"
+                style="display: none; color: var(--danger);">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor" d="M6 18h12V6H6v12z" />
+                </svg>
+              </button>
+              <!-- Next/Skip Media -->
+              <button id="btn-next-media" class="btn-icon" title="Lanjut / Lewati" style="display: none;">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                </svg>
+              </button>
+              <div class="controls-divider"></div>
+              <!-- Mute Toggle -->
+              <button id="btn-mute-toggle" class="btn-icon" title="Toggle Suara">
+                <svg viewBox="0 0 24 24" width="20" height="20" id="icon-mute">
+                  <path fill="currentColor"
+                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                </svg>
+              </button>
+              <!-- Fullscreen -->
+              <button id="btn-fullscreen" class="btn-icon" title="Layar Penuh">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor"
+                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-viewport">
+            <!-- Standby Overlay Screen -->
+            <div id="standby-screen" class="standby-screen">
+              <div class="standby-grid"></div>
+              <div class="loader-ring"></div>
+              <div class="standby-logo">
+                <img src="img/logo-pln.jpg" alt="PLN Logo" class="pln-real-logo-medium">
+              </div>
+              <h4>Menunggu Jadwal Video</h4>
+              <p id="standby-message">Tidak ada video yang dijadwalkan saat ini. Layar dalam mode siaga.</p>
+              <div class="next-countdown-mini" id="next-countdown-box" style="display:none;">
+                <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                Video berikutnya: <strong id="next-video-title">-</strong> dalam <strong id="next-video-time">-</strong>
+              </div>
+            </div>
+
+            <!-- Audio Visualizer Overlay Screen (for MP3s, hidden by default) -->
+            <div id="audio-visualizer" class="audio-visualizer-container" style="display: none;">
+              <div class="audio-disc-wrapper">
+                <div id="audio-disc-vinyl" class="audio-disc-vinyl">
+                  <div class="audio-disc-center"></div>
+                </div>
+              </div>
+              <div class="audio-track-info">
+                <h4 id="audio-track-title" class="audio-track-title">nama_lagu.mp3</h4>
+                <span class="audio-track-format">Audio Mode</span>
+              </div>
+              <div id="audio-equalizer" class="equalizer-bars">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <!-- HTML5 Video Player -->
+            <video id="main-video-player" playsinline preload="auto">
+              <p>Browser Anda tidak mendukung tag video HTML5.</p>
+            </video>
+
+            <!-- Video Overlay Info (Fade in on change / hover) -->
+            <div id="video-overlay-info" class="video-overlay-info">
+              <div class="overlay-details">
+                <span class="label">Sedang Diputar</span>
+                <h4 id="overlay-video-title">nama_video.mp4</h4>
+                <div class="overlay-timing">
+                  <span id="overlay-time-progress">00:00 / 00:00</span>
+                  <span class="separator">•</span>
+                  <span id="overlay-schedule-time">Jadwal: 10:00 - 11:00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- LIVE Badge -->
+            <div class="viewport-live-badge" id="viewport-live-badge" style="display:none;">
+              <span class="live-dot"></span> LIVE
+            </div>
+          </div>
+
+          <div class="player-footer">
+            <div class="now-playing-banner">
+              <div class="banner-icon animated-bar-icon">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="banner-text">
+                <span class="info-label">Status Pemutaran:</span>
+                <span id="now-playing-title" class="info-value">Standby (Layar Kosong)</span>
+              </div>
+            </div>
+            <div class="player-slider">
+              <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logs Card -->
+        <div class="card logs-card">
+          <div class="card-header">
+            <div class="title-with-badge">
+              <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+              </div>
+              <h3>Riwayat Aktivitas</h3>
+            </div>
+            <button id="btn-clear-logs-ui" class="btn-text">
+              <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              Bersihkan
+            </button>
+          </div>
+          <div class="logs-container" id="logs-list">
+            <div class="log-item empty">Belum ada riwayat aktivitas.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Navigation & Control Panels -->
+      <section class="right-column">
+        <!-- Dashboard Navigation Tabs -->
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="tab-schedule">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor"
+                d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm-5-7H7v2h7v-2z" />
+            </svg>
+            Jadwalkan
+          </button>
+          <button class="tab-btn" data-tab="tab-list">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor"
+                d="M4 14h6v-6H4v6zm0 5h6v-6H4v6zM4 9h6V3H4v6zm9 5h7v-2h-7v2zm0 5h7v-2h-7v2zM13 5v2h7V5h-7z" />
+            </svg>
+            Daftar Jadwal
+          </button>
+          <button class="tab-btn" data-tab="tab-library">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor"
+                d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z" />
+            </svg>
+            Library Video
+          </button>
+        </div>
+
+        <!-- Tab 1: Form Tambah Jadwal -->
+        <div id="tab-schedule" class="tab-pane active">
+          <div class="card pane-card">
+            <div class="pane-card-title-row">
+              <h3 id="schedule-form-title">Buat Jadwal Baru</h3>
+            </div>
+            <form id="form-add-schedule" class="modern-form">
+              <!-- Video/Audio Selection with Playlist -->
+              <div class="form-group">
+                <label for="schedule-video">Pilih Video / Audio</label>
+                <div style="display: flex; gap: 8px;">
+                  <div class="select-wrapper" style="flex-grow: 1;">
+                    <select id="schedule-video">
+                      <option value="" disabled selected>-- Pilih media dari server --</option>
+                    </select>
+                  </div>
+                  <button type="button" id="btn-add-to-playlist" class="btn btn-secondary" style="padding: 12px 16px;">
+                    + Tambah
+                  </button>
+                </div>
+                <p class="form-help">Jika berkas belum terdaftar, unggah terlebih dahulu di tab <strong>Library Video</strong>.</p>
+              </div>
+
+              <!-- Playlist Preview List -->
+              <div class="form-group" id="playlist-preview-group" style="display: none;">
+                <label>Daftar Putar (Playlist)</label>
+                <div id="playlist-preview-list"
+                  style="display: flex; flex-direction: column; gap: 6px; background: rgba(0, 0, 0, 0.25); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass);">
+                </div>
+              </div>
+
+              <!-- Schedule Type (Once vs. Recurring) -->
+              <div class="form-group">
+                <label>Tipe Jadwal</label>
+                <div class="radio-toggle-group">
+                  <input type="radio" id="type-once" name="schedule-type" value="once" checked>
+                  <label for="type-once">
+                    <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+                    Sekali Saja (Tanggal)
+                  </label>
+                  <input type="radio" id="type-recurring" name="schedule-type" value="recurring">
+                  <label for="type-recurring">
+                    <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                    Berulang (Hari)
+                  </label>
+                </div>
+              </div>
+
+              <!-- Once Schedule Configuration -->
+              <div id="group-type-once" class="form-sub-group">
+                <div class="form-group">
+                  <label for="schedule-date">Tanggal Pemutaran</label>
+                  <input type="date" id="schedule-date" min="2026-07-08">
+                </div>
+              </div>
+
+              <!-- Recurring Schedule Configuration -->
+              <div id="group-type-recurring" class="form-sub-group" style="display:none;">
+                <div class="form-group">
+                  <label>Pilih Hari Pemutaran</label>
+                  <div class="days-checkbox-grid">
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="1"><span>Sen</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="2"><span>Sel</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="3"><span>Rab</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="4"><span>Kam</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="5"><span>Jum</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="6"><span>Sab</span></label>
+                    <label class="day-chip"><input type="checkbox" name="schedule-days" value="0"><span>Min</span></label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Inputs (Start Time only) -->
+              <div id="schedule-time-fields-row" class="form-row">
+                <div class="form-group col-12">
+                  <label>Jam Mulai (Format 24 Jam)</label>
+                  <div style="display:flex; gap:8px; align-items:center;">
+                    <div class="select-wrapper" style="flex:1;">
+                      <select id="schedule-start-hour">
+                        <option value="" disabled selected>-- Jam --</option>
+                      </select>
+                    </div>
+                    <span style="color:var(--primary); font-size:20px; font-weight:700;">:</span>
+                    <div class="select-wrapper" style="flex:1;">
+                      <select id="schedule-start-minute">
+                        <option value="" disabled selected>-- Menit --</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Hidden field untuk validasi kompatibilitas -->
+                  <input type="hidden" id="schedule-start-time">
+                </div>
+              </div>
+
+              <!-- Loop Option -->
+              <div class="form-group switch-group">
+                <div class="switch-label-wrapper">
+                  <label class="switch-title">Putar Ulang Otomatis (Loop)</label>
+                  <span class="switch-desc">Ulangi playlist secara terus-menerus jika sudah selesai diputar.</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="schedule-loop" checked>
+                  <span class="slider-round"></span>
+                </label>
+              </div>
+
+              <!-- Submit & Cancel Actions -->
+              <div style="display:flex; gap:10px; width:100%;">
+                <button type="submit" id="btn-submit-schedule" class="btn btn-primary"
+                  style="flex-grow:1; padding: 14px; font-size: 14px;">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  <span id="btn-submit-schedule-text">Simpan ke Jadwal</span>
+                </button>
+                <button type="button" id="btn-cancel-edit-schedule" class="btn btn-secondary"
+                  style="display:none; padding:14px 18px;">
+                  Batal Edit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tab 2: Daftar Jadwal Aktif -->
+        <div id="tab-list" class="tab-pane">
+          <div class="card pane-card">
+            <div class="pane-header">
+              <div class="title-with-badge">
+                <h3>Daftar Semua Jadwal</h3>
+              </div>
+              <span id="schedule-count-badge" class="badge badge-info">0 Jadwal</span>
+            </div>
+
+            <div class="schedules-list-container" id="schedules-list">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                  <path fill="currentColor"
+                    d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+                </svg>
+                <p>Belum ada jadwal yang dibuat.</p>
+                <button class="btn btn-secondary btn-small" onclick="switchTab('tab-schedule')">Buat Sekarang</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Library Video (Upload & Delete) -->
+        <div id="tab-library" class="tab-pane">
+          <div class="card pane-card">
+            <div class="pane-card-title-row">
+              <h3>Upload Media Baru</h3>
+            </div>
+
+            <!-- Drag and Drop Zone -->
+            <div class="upload-dropzone" id="upload-zone">
+              <input type="file" id="file-input" accept="video/mp4,audio/mp3,video/mpeg,video/mpg"
+                style="display:none;">
+              <div class="dropzone-content">
+                <div class="upload-icon">
+                  <svg viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="currentColor"
+                      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
+                  </svg>
+                </div>
+                <p class="drop-text-primary">Tarik &amp; lepas file MP4, MP3, atau MPEG di sini</p>
+                <p class="drop-text-secondary">atau klik untuk menelusuri file</p>
+                <span class="file-limits">Format: .mp4, .mp3, .mpeg, .mpg (Maks. 500MB)</span>
+              </div>
+            </div>
+
+            <!-- Upload Progress Bar (hidden by default) -->
+            <div class="upload-progress-container" id="upload-progress-container" style="display:none;">
+              <div class="upload-progress-info">
+                <span id="upload-filename">nama_video.mp4</span>
+                <span id="upload-percent">0%</span>
+              </div>
+              <div class="upload-progress-bar">
+                <div class="upload-progress-bar-fill" id="upload-progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- Video Library List -->
+            <div class="library-header-section">
+              <h3>Daftar Media di Server</h3>
+              <span id="video-count-badge" class="badge badge-info">0 Berkas</span>
+            </div>
+
+            <div class="video-list-container" id="video-library-list">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                  <path fill="currentColor"
+                    d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 16H5V5h14v14z" />
+                </svg>
+                <p>Tidak ada media di server.</p>
+                <p class="sub">Silakan unggah video MP4 atau audio MP3 terlebih dahulu.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Custom Confirm Modal -->
+  <div id="confirm-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-card">
+      <div class="confirm-modal-icon">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+          <path fill="currentColor"
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+        </svg>
+      </div>
+      <h3 id="confirm-modal-title">Konfirmasi</h3>
+      <p id="confirm-modal-message">Apakah Anda yakin?</p>
+      <div class="confirm-modal-actions">
+        <button id="btn-confirm-cancel" class="btn btn-secondary btn-small">Batal</button>
+        <button id="btn-confirm-ok" class="btn btn-primary btn-small"
+          style="background: var(--danger); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.45);">Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Prompt Modal -->
+  <div id="prompt-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-card" style="max-width: 400px;">
+      <div class="confirm-modal-icon" style="color: var(--primary);">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+          <path fill="currentColor"
+            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+        </svg>
+      </div>
+      <h3 id="prompt-modal-title">Ubah Nama</h3>
+      <p id="prompt-modal-message">Masukkan nama baru:</p>
+      <input type="text" id="prompt-modal-input"
+        style="width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: white; font-family: inherit; font-size: 14px; margin: 10px 0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);"
+        autocomplete="off" />
+      <div class="confirm-modal-actions">
+        <button id="btn-prompt-cancel" class="btn btn-secondary btn-small">Batal</button>
+        <button id="btn-prompt-ok" class="btn btn-primary btn-small"
+          style="background: var(--primary); box-shadow: 0 4px 15px var(--primary-glow);">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Tambah Slot Jam ke Jadwal Existing -->
+  <div id="add-slot-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-card" style="max-width: 420px; text-align: left;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div class="confirm-modal-icon" style="color: var(--primary); flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-7-7h-3v3h3v-3zm4 0h-3v3h3v-3zm-4-4h-3v3h3V8zm4 0h-3v3h3V8z"/></svg>
+        </div>
+        <div>
+          <h3 style="font-size:16px; font-weight:700; margin-bottom:2px;">Tambah Slot Waktu</h3>
+          <p id="add-slot-modal-subtitle" style="font-size:12px; color:var(--text-muted);">Menambah jam tayang baru ke jadwal ini</p>
+        </div>
+      </div>
+
+      <!-- Tipe Jadwal -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:8px;">Tipe Jadwal</label>
+        <div class="radio-toggle-group">
+          <input type="radio" id="add-slot-type-once" name="add-slot-type" value="once" checked>
+          <label for="add-slot-type-once">
+            <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+            Sekali Saja
+          </label>
+          <input type="radio" id="add-slot-type-recurring" name="add-slot-type" value="recurring">
+          <label for="add-slot-type-recurring">
+            <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+            Berulang
+          </label>
+        </div>
+      </div>
+
+      <!-- Grup: Sekali Saja -->
+      <div id="add-slot-group-once" style="margin-bottom:14px;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:6px;">Tanggal Pemutaran</label>
+        <input type="date" id="add-slot-date" style="width:100%; padding:10px 14px; background:rgba(0,0,0,0.35); border:1px solid var(--border-glass); border-radius:var(--radius-sm); color:white; font-family:inherit; font-size:14px;">
+      </div>
+
+      <!-- Grup: Berulang -->
+      <div id="add-slot-group-recurring" style="display:none; margin-bottom:14px;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:8px;">Pilih Hari</label>
+        <div class="days-checkbox-grid">
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="1"><span>Sen</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="2"><span>Sel</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="3"><span>Rab</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="4"><span>Kam</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="5"><span>Jum</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="6"><span>Sab</span></label>
+          <label class="day-chip"><input type="checkbox" name="add-slot-days" value="0"><span>Min</span></label>
+        </div>
+      </div>
+
+      <!-- Jam Mulai -->
+      <div style="margin-bottom:20px;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:8px;">Jam Mulai (Format 24 Jam)</label>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <div class="select-wrapper" style="flex:1;">
+            <select id="add-slot-hour" style="width:100%; padding:10px 14px; background:rgba(0,0,0,0.35); border:1px solid var(--border-glass); border-radius:var(--radius-sm); color:white; font-family:inherit; font-size:15px; font-weight:600;">
+              <option value="" disabled selected>-- Jam --</option>
+            </select>
+          </div>
+          <span style="color:var(--primary); font-size:20px; font-weight:700;">:</span>
+          <div class="select-wrapper" style="flex:1;">
+            <select id="add-slot-minute" style="width:100%; padding:10px 14px; background:rgba(0,0,0,0.35); border:1px solid var(--border-glass); border-radius:var(--radius-sm); color:white; font-family:inherit; font-size:15px; font-weight:600;">
+              <option value="" disabled selected>-- Menit --</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-modal-actions">
+        <button id="btn-add-slot-cancel" class="btn btn-secondary btn-small">Batal</button>
+        <button id="btn-add-slot-ok" class="btn btn-primary btn-small">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Tambah Jam
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Playlist Jadwal -->
+  <div id="edit-playlist-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-card" style="max-width: 460px; text-align: left;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div class="confirm-modal-icon" style="color: var(--secondary); flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        </div>
+        <div>
+          <h3 style="font-size:16px; font-weight:700; margin-bottom:2px;">Edit Jadwal</h3>
+          <p id="edit-playlist-subtitle" style="font-size:12px; color:var(--text-muted);">Ubah playlist dan pengaturan putar ulang</p>
+        </div>
+      </div>
+
+      <!-- Pilih Media -->
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:6px;">Pilih Media</label>
+        <div style="display:flex; gap:8px;">
+          <div class="select-wrapper" style="flex-grow:1;">
+            <select id="edit-playlist-video-select"></select>
+          </div>
+          <button type="button" id="btn-edit-playlist-add" class="btn btn-secondary" style="padding:10px 14px; font-size:13px;">+ Tambah</button>
+        </div>
+      </div>
+
+      <!-- Preview Playlist Edit -->
+      <div id="edit-playlist-preview-group" style="margin-bottom:14px; display:none;">
+        <label style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.6px; display:block; margin-bottom:6px;">Daftar Putar</label>
+        <div id="edit-playlist-preview-list" style="display:flex; flex-direction:column; gap:6px; background:rgba(0,0,0,0.25); padding:10px; border-radius:var(--radius-sm); border:1px solid var(--border-glass); max-height:180px; overflow-y:auto;"></div>
+      </div>
+
+      <!-- Loop Toggle -->
+      <div class="form-group switch-group" style="margin-bottom:20px;">
+        <div class="switch-label-wrapper">
+          <label class="switch-title">Putar Ulang Otomatis (Loop)</label>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="edit-playlist-loop">
+          <span class="slider-round"></span>
+        </label>
+      </div>
+
+      <div class="confirm-modal-actions">
+        <button id="btn-edit-playlist-cancel" class="btn btn-secondary btn-small">Batal</button>
+        <button id="btn-edit-playlist-ok" class="btn btn-primary btn-small">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Simpan Perubahan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client-side logic script -->
+  <script src="js/app.js"></script>
+
+  <!-- Inline script to update header stat widgets -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const statSch = document.getElementById('header-stat-schedules');
+      const statRealized = document.getElementById('header-stat-realized');
+      const statBar = document.getElementById('header-stat-bar');
+      const statVid = document.getElementById('header-stat-videos');
+      const schBadge = document.getElementById('schedule-count-badge');
+      const vidBadge = document.getElementById('video-count-badge');
+
+      // Count how many schedule slots TODAY have been realized (start time already passed)
+      function computeTodayStats() {
+        if (typeof schedules === 'undefined') return;
+        const now = new Date();
+        const todayDay = now.getDay().toString();
+        const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+        const todayDate = now.getFullYear() + '-' +
+          String(now.getMonth() + 1).padStart(2, '0') + '-' +
+          String(now.getDate()).padStart(2, '0');
+
+        let totalToday = 0;
+        let realizedToday = 0;
+
+        schedules.forEach(sch => {
+          const slots = sch.timeSlots || [];
+          slots.forEach(slot => {
+            let isToday = false;
+            if (slot.type === 'once') {
+              isToday = (slot.date === todayDate);
+            } else {
+              isToday = (slot.days || []).some(d => d.toString() === todayDay);
+            }
+            if (isToday) {
+              totalToday++;
+              const [h, m] = slot.startTime.split(':').map(Number);
+              const slotSec = h * 3600 + m * 60;
+              if (slotSec <= nowSec) realizedToday++;
+            }
+          });
+        });
+
+        if (statSch) statSch.textContent = totalToday;
+        if (statRealized) {
+          statRealized.textContent = realizedToday;
+          // Change color: green when all done, primary otherwise
+          statRealized.style.color = (totalToday > 0 && realizedToday >= totalToday)
+            ? 'var(--success)'
+            : 'var(--primary)';
+        }
+        if (statBar) {
+          const pct = totalToday > 0 ? Math.round((realizedToday / totalToday) * 100) : 0;
+          statBar.style.width = pct + '%';
+          statBar.style.background = (pct >= 100)
+            ? 'linear-gradient(to right, var(--success), hsl(160,70%,55%))'
+            : 'linear-gradient(to right, var(--primary), var(--secondary))';
+        }
+      }
+
+      // Watch for schedule count badge changes (fires when renderSchedulesList() runs)
+      if (schBadge) {
+        new MutationObserver(() => {
+          computeTodayStats();
+        }).observe(schBadge, { childList: true, characterData: true, subtree: true });
+      }
+
+      // Update video count badge
+      if (statVid && vidBadge) {
+        new MutationObserver(() => {
+          statVid.textContent = vidBadge.textContent.replace(' Berkas', '');
+        }).observe(vidBadge, { childList: true, characterData: true, subtree: true });
+      }
+
+      // Show live badge when playing
+      const liveTag = document.getElementById('viewport-live-badge');
+      const playerBadge = document.getElementById('player-badge');
+      if (liveTag && playerBadge) {
+        new MutationObserver(() => {
+          liveTag.style.display = playerBadge.classList.contains('badge-playing') ? 'flex' : 'none';
+        }).observe(playerBadge, { attributes: true, childList: true, subtree: true });
+      }
+
+      // Refresh realized count every 30 seconds (for time-based changes)
+      setInterval(computeTodayStats, 30000);
+    });
+  </script>
+
+</body>
+
+</html>

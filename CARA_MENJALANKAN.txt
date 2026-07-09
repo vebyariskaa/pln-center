@@ -1,0 +1,132 @@
+============================================================
+  PLN MEDIA CENTER - PANDUAN LENGKAP INSTALASI & MENJALANKAN
+  Sistem Pemutar Video Terjadwal
+============================================================
+
+LANGKAH 1: INSTALL NODE.JS (Hanya sekali, di komputer baru)
+------------------------------------------------------------
+1. Buka browser, pergi ke: https://nodejs.org
+2. Klik tombol hijau bertuliskan "LTS" (versi stabil)
+3. Download file installer (.msi untuk Windows)
+4. Jalankan installer → klik Next terus → Finish
+5. RESTART komputer setelah selesai install
+
+Verifikasi berhasil: Buka CMD → ketik: node -v
+   Harus muncul versi seperti: v20.x.x atau v22.x.x
+
+
+LANGKAH 2: SALIN FOLDER PROJECT
+------------------------------------------------------------
+Salin folder "video-scheduler" ke komputer baru.
+Contoh tujuan: E:\video-scheduler  atau  D:\PLN\video-scheduler
+
+PENTING: Hapus folder "node_modules" sebelum menyalin!
+(node_modules sangat besar dan harus diinstall ulang)
+
+Yang wajib ada di folder project:
+  ✅ server.js
+  ✅ package.json
+  ✅ public/ (beserta semua isinya: html, css, js, img)
+  ✅ data/ (schedules.json dan logs.json)
+  ✅ CARA_MENJALANKAN.txt (file ini)
+  ✅ JALANKAN_SISTEM.bat
+  ❌ node_modules/ → JANGAN dicopy, install ulang nanti
+
+
+LANGKAH 3: INSTALL DEPENDENCIES (Hanya pertama kali)
+------------------------------------------------------------
+1. Buka File Explorer, masuk ke folder video-scheduler
+2. Klik kanan di area kosong (bukan di file) → pilih:
+   "Open in Terminal" atau "Buka Command Prompt di sini"
+   
+   Alternatif: Buka CMD → ketik:
+   cd E:\video-scheduler   (sesuaikan path-nya)
+
+3. Ketik perintah ini lalu tekan Enter:
+   npm install
+
+4. Tunggu sampai selesai (beberapa menit, butuh internet)
+   Harus muncul tulisan: "added X packages" di akhir
+
+
+LANGKAH 4: MENJALANKAN SERVER
+------------------------------------------------------------
+CARA MUDAH:
+  Klik dua kali file: JALANKAN_SISTEM.bat
+
+CARA MANUAL (CMD):
+  node server.js
+
+Server berhasil jika muncul:
+  ====================================================
+   Server Pemutar Video Terjadwal Aktif!
+   Akses Lokal:  http://localhost:3000
+  ====================================================
+
+
+LANGKAH 5: BUKA DI BROWSER
+------------------------------------------------------------
+Buka Google Chrome atau Edge, ketik di address bar:
+  http://localhost:3000
+
+Klik tombol "Aktifkan & Mulai Sistem" yang muncul di layar.
+
+
+LANGKAH 6: CARA PENGGUNAAN
+------------------------------------------------------------
+A. UPLOAD VIDEO/AUDIO:
+   → Klik tab "Library Video"
+   → Drag & drop file MP4/MP3 ke area upload
+   → Tunggu upload selesai
+
+B. BUAT JADWAL:
+   → Klik tab "Jadwalkan"
+   → Pilih video dari dropdown
+   → Klik "+ Tambah" untuk masukkan ke playlist
+   → Pilih tipe: Sekali Saja (tanggal tertentu) atau
+                 Berulang (pilih hari Senin-Minggu)
+   → Isi Jam Mulai (format 24 jam, contoh: 08:00)
+   → Klik "Simpan ke Jadwal"
+
+C. MELIHAT JADWAL:
+   → Klik tab "Daftar Jadwal"
+
+D. VIDEO OTOMATIS PUTAR:
+   → Sistem akan otomatis memutar video saat jamnya tiba
+   → Layar kiri akan menampilkan video yang sedang diputar
+   → Sistem HARUS aktif (sudah klik tombol Aktifkan)
+
+
+LANGKAH 7: AKSES DARI HP / KOMPUTER LAIN (1 WiFi)
+------------------------------------------------------------
+Saat server berjalan, lihat IP address yang tampil di CMD.
+Contoh: http://192.168.1.100:3000
+
+Buka IP tersebut di browser HP/komputer lain
+(Pastikan semua perangkat terhubung ke WiFi yang sama)
+
+
+TROUBLESHOOTING
+------------------------------------------------------------
+❌ "npm install" gagal / error:
+   → Pastikan ada koneksi internet
+   → Pastikan Node.js sudah terinstall: node -v
+   → Hapus folder node_modules lalu coba lagi
+
+❌ Cannot find module / error saat npm start:
+   → Jangan pakai "npm start", gunakan: node server.js
+   → Atau hapus node_modules dan jalankan: npm install
+
+❌ Video tidak putar otomatis:
+   → Pastikan sudah klik tombol "Aktifkan & Mulai Sistem"
+   → Pastikan jadwal sudah dibuat dengan benar
+   → Pastikan nama file video di jadwal masih ada di server
+
+❌ Port 3000 sudah dipakai:
+   → Edit server.js baris ke-10, ganti PORT ke angka lain
+   → Contoh: const PORT = 3001;
+
+============================================================
+  Dibuat untuk PLN Media Center
+  Versi: 2.0 | Node.js Express + Vanilla JS
+============================================================

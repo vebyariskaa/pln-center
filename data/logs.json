@@ -1,0 +1,604 @@
+[
+  {
+    "id": "1783478074370",
+    "timestamp": "2026-07-08T02:34:34.370Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode standby."
+  },
+  {
+    "id": "1783478689426",
+    "timestamp": "2026-07-08T02:44:49.426Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode standby."
+  },
+  {
+    "id": "1783479228925",
+    "timestamp": "2026-07-08T02:53:48.925Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479265741",
+    "timestamp": "2026-07-08T02:54:25.741Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479634204",
+    "timestamp": "2026-07-08T03:00:34.204Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479661689",
+    "timestamp": "2026-07-08T03:01:01.689Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479756911",
+    "timestamp": "2026-07-08T03:02:36.911Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479902357",
+    "timestamp": "2026-07-08T03:05:02.357Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783479960126",
+    "timestamp": "2026-07-08T03:06:00.126Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal pemutaran terpicu pada jam 11:06. Memulai playlist."
+  },
+  {
+    "id": "1783479960697",
+    "timestamp": "2026-07-08T03:06:00.697Z",
+    "event": "start",
+    "videoName": "05._PLN_UP3_Kotamobagu_Jaga_Keandalan_Pasokan_Listrik_Dukung_Ibadah_Raya_Hari_Pekabaran_Injil_GMIBM_ke-122_dan_HUT_Sinode_GMIBM_ke-76.mp4",
+    "details": "Memulai pemutaran berkas [1/1] dari playlist."
+  },
+  {
+    "id": "1783479998341",
+    "timestamp": "2026-07-08T03:06:38.341Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783480177375",
+    "timestamp": "2026-07-08T03:09:37.375Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783480912361",
+    "timestamp": "2026-07-08T03:21:52.361Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481124568",
+    "timestamp": "2026-07-08T03:25:24.568Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481231993",
+    "timestamp": "2026-07-08T03:27:11.993Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481304078",
+    "timestamp": "2026-07-08T03:28:24.078Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481401181",
+    "timestamp": "2026-07-08T03:30:01.181Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481454629",
+    "timestamp": "2026-07-08T03:30:54.629Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481746595",
+    "timestamp": "2026-07-08T03:35:46.595Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783481968314",
+    "timestamp": "2026-07-08T03:39:28.314Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783482197176",
+    "timestamp": "2026-07-08T03:43:17.176Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783482232490",
+    "timestamp": "2026-07-08T03:43:52.490Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783482466750",
+    "timestamp": "2026-07-08T03:47:46.750Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783488889000",
+    "timestamp": "2026-07-08T05:34:49.000Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783489189165",
+    "timestamp": "2026-07-08T05:39:49.165Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783489379298",
+    "timestamp": "2026-07-08T05:42:59.298Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783489542574",
+    "timestamp": "2026-07-08T05:45:42.574Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783489784688",
+    "timestamp": "2026-07-08T05:49:44.688Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783489877919",
+    "timestamp": "2026-07-08T05:51:17.920Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783490152334",
+    "timestamp": "2026-07-08T05:55:52.334Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783490400393",
+    "timestamp": "2026-07-08T06:00:00.393Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"PLN_UP3_Kotamobagu_Tingkatkan_Kesadaran_Masyarakat_Melalui_Sosialisasi_Keselamatan_Ketenagalistrikan_di_Desa_Otam_Barat.mp4\" terpicu pada jam 14:00. Memulai pemutaran."
+  },
+  {
+    "id": "1783490400944",
+    "timestamp": "2026-07-08T06:00:00.944Z",
+    "event": "start",
+    "videoName": "PLN_UP3_Kotamobagu_Tingkatkan_Kesadaran_Masyarakat_Melalui_Sosialisasi_Keselamatan_Ketenagalistrikan_di_Desa_Otam_Barat.mp4",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783490469504",
+    "timestamp": "2026-07-08T06:01:09.504Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783490520371",
+    "timestamp": "2026-07-08T06:02:00.371Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"PEMUTARAN_LAGU_INDONESIA_RAYA.mp3\" terpicu pada jam 14:02. Memulai pemutaran."
+  },
+  {
+    "id": "1783490520698",
+    "timestamp": "2026-07-08T06:02:00.698Z",
+    "event": "start",
+    "videoName": "PEMUTARAN_LAGU_INDONESIA_RAYA.mp3",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783490685468",
+    "timestamp": "2026-07-08T06:04:45.468Z",
+    "event": "start",
+    "videoName": "PEMUTARAN_LAGU_INDONESIA_RAYA.mp3",
+    "details": "Mengulangi playlist dari berkas pertama (Looping)."
+  },
+  {
+    "id": "1783490685510",
+    "timestamp": "2026-07-08T06:04:45.510Z",
+    "event": "start",
+    "videoName": "PEMUTARAN_LAGU_INDONESIA_RAYA.mp3",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783490821461",
+    "timestamp": "2026-07-08T06:07:01.461Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783490950305",
+    "timestamp": "2026-07-08T06:09:10.305Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783491942985",
+    "timestamp": "2026-07-08T06:25:42.985Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492059110",
+    "timestamp": "2026-07-08T06:27:39.110Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492249148",
+    "timestamp": "2026-07-08T06:30:49.148Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492261344",
+    "timestamp": "2026-07-08T06:31:01.344Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492376004",
+    "timestamp": "2026-07-08T06:32:56.004Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492459391",
+    "timestamp": "2026-07-08T06:34:19.391Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492524528",
+    "timestamp": "2026-07-08T06:35:24.528Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783492983853",
+    "timestamp": "2026-07-08T06:43:03.853Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783493292105",
+    "timestamp": "2026-07-08T06:48:12.105Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783493405743",
+    "timestamp": "2026-07-08T06:50:05.743Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783497600433",
+    "timestamp": "2026-07-08T08:00:00.433Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"bersih.mp4\" terpicu pada jam 16:00. Memulai pemutaran."
+  },
+  {
+    "id": "1783497600494",
+    "timestamp": "2026-07-08T08:00:00.494Z",
+    "event": "error",
+    "videoName": "bersih.mp4",
+    "details": "Kesalahan pemutaran media. Pastikan format codec didukung browser."
+  },
+  {
+    "id": "1783497600501",
+    "timestamp": "2026-07-08T08:00:00.501Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Seluruh isi playlist telah selesai diputar."
+  },
+  {
+    "id": "1783497600510",
+    "timestamp": "2026-07-08T08:00:00.510Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Seluruh isi playlist telah selesai diputar."
+  },
+  {
+    "id": "1783497600517",
+    "timestamp": "2026-07-08T08:00:00.517Z",
+    "event": "error",
+    "videoName": "bersih.mp4",
+    "details": "Gagal memutar berkas: Failed to load because no supported source was found."
+  },
+  {
+    "id": "1783497664698",
+    "timestamp": "2026-07-08T08:01:04.698Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783498306183",
+    "timestamp": "2026-07-08T08:11:46.183Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783499068508",
+    "timestamp": "2026-07-08T08:24:28.508Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501015063",
+    "timestamp": "2026-07-08T08:56:55.063Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501067557",
+    "timestamp": "2026-07-08T08:57:47.557Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501223819",
+    "timestamp": "2026-07-08T09:00:23.819Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501471670",
+    "timestamp": "2026-07-08T09:04:31.670Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501547602",
+    "timestamp": "2026-07-08T09:05:47.602Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501593086",
+    "timestamp": "2026-07-08T09:06:33.086Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501628874",
+    "timestamp": "2026-07-08T09:07:08.874Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501677027",
+    "timestamp": "2026-07-08T09:07:57.027Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501721351",
+    "timestamp": "2026-07-08T09:08:41.351Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501774718",
+    "timestamp": "2026-07-08T09:09:34.718Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783501844458",
+    "timestamp": "2026-07-08T09:10:44.458Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783556942106",
+    "timestamp": "2026-07-09T00:29:02.106Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783557363827",
+    "timestamp": "2026-07-09T00:36:03.827Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783559931803",
+    "timestamp": "2026-07-09T01:18:51.803Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783560499071",
+    "timestamp": "2026-07-09T01:28:19.071Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783560600587",
+    "timestamp": "2026-07-09T01:30:00.587Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3\" terpicu pada jam 09:30. Memulai pemutaran."
+  },
+  {
+    "id": "1783560600924",
+    "timestamp": "2026-07-09T01:30:00.924Z",
+    "event": "start",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783560676113",
+    "timestamp": "2026-07-09T01:31:16.113Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Seluruh isi playlist telah selesai diputar."
+  },
+  {
+    "id": "1783560676115",
+    "timestamp": "2026-07-09T01:31:16.115Z",
+    "event": "error",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Kesalahan memutar: 1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3 (File tidak ditemukan atau format tidak didukung)"
+  },
+  {
+    "id": "1783561664020",
+    "timestamp": "2026-07-09T01:47:44.020Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783561964855",
+    "timestamp": "2026-07-09T01:52:44.855Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Sistem pemutar diaktifkan oleh pengguna. Mode aktif."
+  },
+  {
+    "id": "1783562100308",
+    "timestamp": "2026-07-09T01:55:00.308Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3\" terpicu pada jam 09:55. Memulai pemutaran."
+  },
+  {
+    "id": "1783562100425",
+    "timestamp": "2026-07-09T01:55:00.425Z",
+    "event": "start",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783562175398",
+    "timestamp": "2026-07-09T01:56:15.398Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Seluruh isi playlist telah selesai diputar."
+  },
+  {
+    "id": "1783562175403",
+    "timestamp": "2026-07-09T01:56:15.403Z",
+    "event": "error",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Kesalahan memutar: 1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3 (File tidak ditemukan atau format tidak didukung)"
+  },
+  {
+    "id": "1783562400305",
+    "timestamp": "2026-07-09T02:00:00.305Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Jadwal \"1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3\" terpicu pada jam 10:00. Memulai pemutaran."
+  },
+  {
+    "id": "1783562400579",
+    "timestamp": "2026-07-09T02:00:00.579Z",
+    "event": "start",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Memulai pemutaran berkas [1/1] — menunggu selesai sebelum lanjut."
+  },
+  {
+    "id": "1783562475784",
+    "timestamp": "2026-07-09T02:01:15.784Z",
+    "event": "standby",
+    "videoName": "System",
+    "details": "Seluruh isi playlist telah selesai diputar."
+  },
+  {
+    "id": "1783562475788",
+    "timestamp": "2026-07-09T02:01:15.788Z",
+    "event": "error",
+    "videoName": "1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "details": "Kesalahan memutar: 1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3 (File tidak ditemukan atau format tidak didukung)"
+  }
+]

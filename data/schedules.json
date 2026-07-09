@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1783560531391",
+    "videoName": "1783499519983_1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3",
+    "mediaList": [
+      "1783499519983_1783489578848_INFO_PLN_CLICK_ENERGY_DAY.mp3"
+    ],
+    "timeSlots": [
+      {
+        "id": "1783560531387",
+        "type": "recurring",
+        "startTime": "09:30",
+        "days": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "type": "once",
+        "startTime": "09:55",
+        "date": "2026-07-09"
+      },
+      {
+        "type": "once",
+        "startTime": "10:00",
+        "date": "2026-07-09"
+      }
+    ],
+    "loop": false,
+    "createdAt": "2026-07-09T01:28:51.391Z"
+  }
+]
