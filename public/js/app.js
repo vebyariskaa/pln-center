@@ -58,6 +58,8 @@ const elements = {
     groupTypeRecurring: document.getElementById('group-type-recurring'),
     scheduleDateInput: document.getElementById('schedule-date'),
     scheduleStartTime: document.getElementById('schedule-start-time'),
+    scheduleStartHour: document.getElementById('schedule-start-hour'),
+    scheduleStartMinute: document.getElementById('schedule-start-minute'),
     scheduleLoopCheckbox: document.getElementById('schedule-loop'),
 
     schedulesList: document.getElementById('schedules-list'),
@@ -163,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPlaylistFormActions();
     initAddSlotModal();
     initEditPlaylistModal();
+    initMainFormTimeDropdowns();
 
     // Batal Edit Jadwal Listener
     elements.btnCancelEditSchedule.addEventListener('click', () => {
@@ -880,6 +883,15 @@ async function renameVideo(oldName, newName) {
 
 elements.formAddSchedule.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Update value scheduleStartTime dari dropdown sebelum submit
+    const mainHour = elements.scheduleStartHour.value;
+    const mainMinute = elements.scheduleStartMinute.value;
+    if (mainHour && mainMinute) {
+        elements.scheduleStartTime.value = `${mainHour}:${mainMinute}`;
+    } else {
+        elements.scheduleStartTime.value = '';
+    }
 
     if (selectedPlaylist.length === 0) {
         showToast('Harap tambahkan minimal satu video/audio ke playlist!', 'error');
@@ -1801,5 +1813,22 @@ function cancelEditSchedule() {
     elements.typeOnceRadio.closest('.form-group').style.display = 'flex';
     elements.scheduleTimeFieldsRow.style.display = 'flex';
     toggleScheduleTypeFields();
+}
+
+function initMainFormTimeDropdowns() {
+    // Isi dropdown Jam utama (00 - 23)
+    for (let h = 0; h <= 23; h++) {
+        const opt = document.createElement('option');
+        opt.value = String(h).padStart(2, '0');
+        opt.textContent = String(h).padStart(2, '0') + ' (Jam)';
+        elements.scheduleStartHour.appendChild(opt);
+    }
+    // Isi dropdown Menit utama (00, 05, 10, ... 55)
+    for (let m = 0; m <= 55; m += 5) {
+        const opt = document.createElement('option');
+        opt.value = String(m).padStart(2, '0');
+        opt.textContent = String(m).padStart(2, '0') + ' (Menit)';
+        elements.scheduleStartMinute.appendChild(opt);
+    }
 }
 
